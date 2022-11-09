@@ -1,0 +1,517 @@
+[
+    {
+        "id": "0143dbe03554744a",
+        "type": "tab",
+        "label": "Contrôle caméra",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "833539fe131bac47",
+        "type": "image",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "width": "200",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 900,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "1a3c792f40bb22e9",
+        "type": "file in",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "filename": "/home/pi/tflite1/photo_robot.jpg",
+        "filenameType": "str",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 650,
+        "y": 120,
+        "wires": [
+            [
+                "833539fe131bac47",
+                "e64e1ed503c824c2"
+            ]
+        ]
+    },
+    {
+        "id": "e64e1ed503c824c2",
+        "type": "base64",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "action": "str",
+        "property": "payload",
+        "x": 880,
+        "y": 220,
+        "wires": [
+            [
+                "58313bbad320bac1"
+            ]
+        ]
+    },
+    {
+        "id": "2e44b2113d244f2c",
+        "type": "pythonshell in",
+        "z": "0143dbe03554744a",
+        "name": "Reco_faciale_opti_v2.py",
+        "pyfile": "/home/pi/face_recognition/Reco_faciale_opti_v2.py",
+        "virtualenv": "",
+        "continuous": false,
+        "stdInData": false,
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "fb85f655fdd8cd7d",
+                "f83951a734932818",
+                "9c4056cb51024411"
+            ]
+        ]
+    },
+    {
+        "id": "fb85f655fdd8cd7d",
+        "type": "debug",
+        "z": "0143dbe03554744a",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "89aaf43e3858cff6",
+        "type": "pythonshell in",
+        "z": "0143dbe03554744a",
+        "name": "Prise_photo.py",
+        "pyfile": "/home/pi/image_capture/Prise_photo.py",
+        "virtualenv": "",
+        "continuous": false,
+        "stdInData": false,
+        "x": 360,
+        "y": 120,
+        "wires": [
+            [
+                "1a3c792f40bb22e9"
+            ]
+        ]
+    },
+    {
+        "id": "6548d58428de86cb",
+        "type": "image",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "width": "200",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 940,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "36a14047b714fa89",
+        "type": "file in",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "filename": "/home/pi/tflite1/photo_analysée.jpg",
+        "filenameType": "str",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 660,
+        "y": 400,
+        "wires": [
+            [
+                "6548d58428de86cb",
+                "35d91d3d490bc2e8"
+            ]
+        ]
+    },
+    {
+        "id": "35d91d3d490bc2e8",
+        "type": "base64",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "action": "str",
+        "property": "payload",
+        "x": 920,
+        "y": 520,
+        "wires": [
+            [
+                "68bd81259d80f3e3"
+            ]
+        ]
+    },
+    {
+        "id": "737c4f372de96113",
+        "type": "pythonshell in",
+        "z": "0143dbe03554744a",
+        "name": "detection_image.py",
+        "pyfile": "/home/pi/tflite1/detection_image.py",
+        "virtualenv": "/home/pi/tflite1/tflite1-env",
+        "continuous": false,
+        "stdInData": false,
+        "x": 410,
+        "y": 400,
+        "wires": [
+            [
+                "36a14047b714fa89"
+            ]
+        ]
+    },
+    {
+        "id": "2081fb13ab770c75",
+        "type": "pythonshell in",
+        "z": "0143dbe03554744a",
+        "name": "main.py",
+        "pyfile": "/home/pi/streaming/main.py",
+        "virtualenv": "",
+        "continuous": false,
+        "stdInData": false,
+        "x": 340,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f83951a734932818",
+        "type": "file in",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "filename": "/home/pi/face_recognition/visage_analysée.jpg",
+        "filenameType": "str",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 800,
+        "y": 260,
+        "wires": [
+            [
+                "149231a0e1a75397",
+                "d9a38955d3be26b0"
+            ]
+        ]
+    },
+    {
+        "id": "149231a0e1a75397",
+        "type": "base64",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "action": "str",
+        "property": "payload",
+        "x": 1140,
+        "y": 260,
+        "wires": [
+            [
+                "8b7522cce6e92bdc"
+            ]
+        ]
+    },
+    {
+        "id": "e29d866b74a5009e",
+        "type": "ui_button",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "group": "b76d64bc92e2da6a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Start",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "89aaf43e3858cff6"
+            ]
+        ]
+    },
+    {
+        "id": "1712c0a885c9d341",
+        "type": "ui_button",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "group": "4ce3110cd650ad93",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Start",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "2e44b2113d244f2c"
+            ]
+        ]
+    },
+    {
+        "id": "0aecb685e4600d84",
+        "type": "ui_button",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "group": "a76ec597c9799789",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Start",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 400,
+        "wires": [
+            [
+                "737c4f372de96113"
+            ]
+        ]
+    },
+    {
+        "id": "8b7522cce6e92bdc",
+        "type": "ui_template",
+        "z": "0143dbe03554744a",
+        "group": "4ce3110cd650ad93",
+        "name": "facial_reco",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "format": "<!DOCTYPE html>\n<html>\n<style>\n    .img {\n        padding: 2px;\n        width: 260px;\n    }\n</style>\n\n<center>\n    <table>\n        <tr>\n            <!-- Row 1 -->\n            <td style=\"text-align: center\"><img src=\"data:image/jpg;base64,{{msg.payload}}\" class=img /></td>\n        </tr>\n    </table>\n</center>\n\n</html>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1290,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68bd81259d80f3e3",
+        "type": "ui_template",
+        "z": "0143dbe03554744a",
+        "group": "a76ec597c9799789",
+        "name": "object_detection",
+        "order": 5,
+        "width": "6",
+        "height": "5",
+        "format": "<!DOCTYPE html>\n<html>\n<style>\n    .img {\n        border: 8px solid #000;\n        border-radius: 8px;\n        padding: 2px;\n        width: 260px;\n    }\n</style>\n\n<center>\n    <table>\n        <tr>\n            <!-- Row 1 -->\n            <td style=\"text-align: center\"><img src=\"data:image/jpg;base64,{{msg.payload}}\" class=img /></td>\n        </tr>\n    </table>\n</center>\n\n</html>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1080,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e7f7eefc431f24e2",
+        "type": "ui_button",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "group": "c2e12368e5167f73",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Start",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "2081fb13ab770c75"
+            ]
+        ]
+    },
+    {
+        "id": "d9a38955d3be26b0",
+        "type": "image",
+        "z": "0143dbe03554744a",
+        "name": "",
+        "width": "200",
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 1200,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "9c4056cb51024411",
+        "type": "ui_text",
+        "z": "0143dbe03554744a",
+        "group": "4ce3110cd650ad93",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 670,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2df18de2462e39d6",
+        "type": "ui_template",
+        "z": "0143dbe03554744a",
+        "group": "c2e12368e5167f73",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <a href=\"http://10.3.141.1:9000\"><span>Streaming link</span></a>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 160,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "58313bbad320bac1",
+        "type": "ui_template",
+        "z": "0143dbe03554744a",
+        "group": "b76d64bc92e2da6a",
+        "name": "Photo",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "format": "<!DOCTYPE html>\n<html>\n<style>\n    .img {\n        padding: 2px;\n        width: 260px;\n    }\n</style>\n\n<center>\n    <table>\n        <tr>\n            <!-- Row 1 -->\n            <td style=\"text-align: center\"><img src=\"data:image/jpg;base64,{{msg.payload}}\" class=img /></td>\n        </tr>\n    </table>\n</center>\n\n</html>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1030,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b76d64bc92e2da6a",
+        "type": "ui_group",
+        "name": "Capture d'images",
+        "tab": "c33a876118230bf5",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4ce3110cd650ad93",
+        "type": "ui_group",
+        "name": "Reconaissance faciale",
+        "tab": "c33a876118230bf5",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a76ec597c9799789",
+        "type": "ui_group",
+        "name": "Detection d'objets",
+        "tab": "c33a876118230bf5",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c2e12368e5167f73",
+        "type": "ui_group",
+        "name": "Streaming",
+        "tab": "c33a876118230bf5",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c33a876118230bf5",
+        "type": "ui_tab",
+        "name": "Contrôle Caméra",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
